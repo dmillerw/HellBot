@@ -16,7 +16,9 @@ NICK = 'HellBot'
 
 bot = Cinch::Bot.new do
   configure do |c|
-    c.nick = 'HellBot',
+    c.nick = NICK
+    c.user = NICK
+    c.realname = NICK
     c.server = 'irc.esper.net'
     c.channels = ['#InfernalSkies']
     c.plugins.plugins = [Insult, Encourage, Compliment, Poke, Quit, Flip, Unflip, Rant, Echo]
