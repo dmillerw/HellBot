@@ -7,6 +7,12 @@ class Rant
 
   match /rant (.+)/
   def execute(msg, arg)
+    # Replace with proper ignore handler
+  if msg.user.user.include? 'MattDahEp'
+      msg.reply 'I\'ve been told not to take orders from you...'
+      return
+    end
+
     uri = URI.parse('http://rant.berkin.me/rantbox/run')
     data = {
         'code' => arg,

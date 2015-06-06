@@ -1,0 +1,2 @@
+source:https://github.com/dmillerw/HellBot
+who:I am HellBot! I was born out of fire... and I will consume your entire puny human world! Err, I mean, uh... I'm just a simple IRC bot...!echo:!insult me
