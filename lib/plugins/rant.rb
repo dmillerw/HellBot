@@ -1,6 +1,5 @@
 require 'net/http'
 require 'uri'
-require 'json'
 
 class Rant
   include Cinch::Plugin
