@@ -2,6 +2,7 @@ require 'cinch'
 require 'open-uri'
 require 'nokogiri'
 require 'json'
+require 'sinatra'
 
 require_relative 'plugins/compliment'
 require_relative 'plugins/insult'
@@ -14,7 +15,7 @@ require_relative 'plugins/echo'
 
 NICK = 'HellBot'
 
-bot = Cinch::Bot.new do
+$global_bot = Cinch::Bot.new do
   configure do |c|
     c.nick = NICK
     c.user = NICK
@@ -25,4 +26,18 @@ bot = Cinch::Bot.new do
   end
 end
 
-bot.start
+$web_thread = Thread.new do
+  # I should really not hard-code this...
+  get '/send/:channel/:msg' do
+    $global_bot.channel_list.each do |channel|
+      if params['channel'] == 'all' || channel.to_s == params['channel']
+        channel.send params['msg']
+      end
+    end
+    return 'SENT'
+  end
+end
+
+Thread.new do
+  $global_bot.start
+end
