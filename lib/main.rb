@@ -30,7 +30,7 @@ $web_thread = Thread.new do
   # I should really not hard-code this...
   get '/bot/send/*/*' do
     $global_bot.channel_list.each do |channel|
-      if params['splat'][0] == 'all' || channel.to_s == params['splat'][0]
+      if params['splat'][0] == 'all' || "\##{channel.to_s}" == params['splat'][0]
         channel.send params['splat'][1]
       end
     end
